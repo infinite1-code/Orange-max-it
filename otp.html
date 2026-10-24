@@ -535,18 +535,32 @@
 
     // ─── OTP input builder ───────────────────────────────────────────────────
     function createInputs(containerId, count) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-        for (let i = 0; i < count; i++) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.maxLength = 1;
-            input.className = 'otp-input';
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    for (let i = 0; i < count; i++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.maxLength = 1;
+        input.className = 'otp-input';
+
+        if (i < 3) {
+            input.inputMode = 'text';
+            input.pattern = '[A-Za-z]';
+            input.addEventListener('input', function () {
+                this.value = this.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+            });
+        } else {
             input.inputMode = 'numeric';
             input.pattern = '[0-9]*';
-            container.appendChild(input);
+            input.addEventListener('input', function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
         }
+
+        container.appendChild(input);
     }
+}
 
     function getCode(containerId) {
         return Array.from(document.querySelectorAll(`#${containerId} .otp-input`))
