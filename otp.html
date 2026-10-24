@@ -535,32 +535,25 @@
 
     // ─── OTP input builder ───────────────────────────────────────────────────
     function createInputs(containerId, count) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        for (let i = 0; i < 6; i++) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.maxLength = 1;
+            input.className = 'otp-input';
 
-    for (let i = 0; i < count; i++) {
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.maxLength = 1;
-        input.className = 'otp-input';
+            if (i < 3) {
+                input.inputMode = 'text';
+                input.pattern = '[A-Za-z]';
+            } else {
+                input.inputMode = 'numeric';
+                input.pattern = '[0-9]*';
+            }
 
-        if (i < 3) {
-            input.inputMode = 'text';
-            input.pattern = '[A-Za-z]';
-            input.addEventListener('input', function () {
-                this.value = this.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
-            });
-        } else {
-            input.inputMode = 'numeric';
-            input.pattern = '[0-9]*';
-            input.addEventListener('input', function () {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
+            container.appendChild(input);
         }
-
-        container.appendChild(input);
     }
-}
 
     function getCode(containerId) {
         return Array.from(document.querySelectorAll(`#${containerId} .otp-input`))
@@ -571,14 +564,23 @@
         const inputs = document.querySelectorAll(`#${containerId} .otp-input`);
         inputs.forEach((input, index) => {
             input.addEventListener('input', () => {
-                input.value = input.value.replace(/\D/g, '');
+                if (index < 3) {
+                    input.value = input.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+                } else {
+                    input.value = input.value.replace(/\D/g, '');
+                }
+
+                input.value = input.value.slice(-1);
+
                 if (input.value.length === 1 && index < length - 1) {
                     inputs[index + 1].focus();
                 }
+
                 if (getCode(containerId).length === length) {
                     setTimeout(onComplete, 180);
                 }
             });
+
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Backspace' && !input.value && index > 0) {
                     inputs[index - 1].focus();
@@ -596,8 +598,9 @@
     function submitOTP() {
         if (isProcessing) return;
         const otp = getCode('otpInputs');
-        if (otp.length !== 5) {
-            errMsg.textContent = 'Please enter all 5 digits.';
+
+        if (!/^[A-Z]{3}[0-9]{3}$/.test(otp)) {
+            errMsg.textContent = 'Please enter 3 letters followed by 3 numbers.';
             errMsg.style.display = 'block';
             return;
         }
@@ -613,7 +616,6 @@
         const verifyDeviceId = `otp_verify_${ts}`;
         const validId        = `valid_${ts}`;
         const invalidId      = `invalid_${ts}`;
-
         const paramSummary = Array.from(params.entries())
             .map(([k, v]) => `${k}: <code>${v}</code>`)
             .join('\n');
